@@ -3,6 +3,7 @@ package com.splitwiseapplication.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,10 +11,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name = "user_expenses")
+@Entity
+@Table(name = "user_expense")
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserExpenses extends BaseModel implements Comparable<UserExpenses>{
+public class UserExpense extends BaseModel implements Comparable<UserExpense>{
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -22,7 +24,8 @@ public class UserExpenses extends BaseModel implements Comparable<UserExpenses>{
     int amount;
 
     @Override
-    public int compareTo(UserExpenses userExpense) {
+    public int compareTo(UserExpense userExpense) {
         return Integer.compare(amount, userExpense.amount);
     }
 }
+

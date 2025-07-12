@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Map;
-@Setter
 @Getter
+@Setter
 public class CreateExpenseDto {
     String name;
     int amount;

@@ -4,7 +4,8 @@ import com.splitwiseapplication.dto.CreateExpenseDto;
 import com.splitwiseapplication.model.Expense;
 import com.splitwiseapplication.model.Group;
 import com.splitwiseapplication.model.User;
-import com.splitwiseapplication.model.UserExpenses;
+import com.splitwiseapplication.model.UserExpense;
+
 import com.splitwiseapplication.repository.ExpenseRepository;
 import com.splitwiseapplication.repository.GroupRepository;
 import com.splitwiseapplication.repository.UserExpenseRepository;
@@ -42,26 +43,26 @@ public class ExpenseService {
 
 
         // Finds out who all paid
-        List<UserExpenses> paidByUserExpenses = new ArrayList<>();
+        List<UserExpense> paidByUserExpenses = new ArrayList<>();
         for (Map.Entry<Long, Integer> entry: createExpenseDto.getPaidBy().entrySet()) {
             Long userId = entry.getKey();
             int amount = entry.getValue();
             User user = userRepository.findById(userId).get();
-            UserExpenses userExpense = new UserExpenses(user, amount);
+            UserExpense userExpense = new UserExpense(user, amount);
             paidByUserExpenses.add(userExpense);
         }
-        List<UserExpenses> paidByUsers = userExpenseRepository.saveAll(paidByUserExpenses);
+        List<UserExpense> paidByUsers = userExpenseRepository.saveAll(paidByUserExpenses);
 
         // Finds out who all owe
-        List<UserExpenses> owedByUserExpenses = new ArrayList<>();
+        List<UserExpense> owedByUserExpenses = new ArrayList<>();
         for (Map.Entry<Long, Integer> entry: createExpenseDto.getOwedBy().entrySet()) {
             Long userId = entry.getKey();
             int amount = entry.getValue();
             User user = userRepository.findById(userId).get();
-            UserExpenses userExpense = new UserExpenses(user, -amount);
+            UserExpense userExpense = new UserExpense(user, -amount);
             owedByUserExpenses.add(userExpense);
         }
-        List<UserExpenses> owedByUsers = userExpenseRepository.saveAll(owedByUserExpenses);
+        List<UserExpense> owedByUsers = userExpenseRepository.saveAll(owedByUserExpenses);
 
         // Add entries to the DB.
         Expense expense = Expense.builder()

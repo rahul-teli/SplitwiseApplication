@@ -9,9 +9,9 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class Expense extends BaseModel  {
+@AllArgsConstructor
+public class Expense extends BaseModel{
    @ManyToOne
    @JoinColumn(name = "group_id")
    Group group;
@@ -21,8 +21,10 @@ public class Expense extends BaseModel  {
    int amount;
 
    @OneToMany(fetch = FetchType.EAGER)
-   List<UserExpenses> paidBy;
+   List<UserExpense> paidBy;
 
    @OneToMany(fetch = FetchType.EAGER)
-    List<UserExpenses> owedBy;
+   List<UserExpense> owedBy;
+
+
 }

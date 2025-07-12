@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("expense")
+@RequestMapping("expenses")
 public class ExpenseController {
     private final ExpenseService expenseService;
 
@@ -18,8 +18,7 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public Expense createExpense(@RequestBody CreateExpenseDto createExpenseDto){
-        return null; //expenseService.createExpense();
+    public Expense createExpense(@RequestBody CreateExpenseDto createExpenseDto) {
+        return expenseService.createExpense(createExpenseDto);
     }
-
 }

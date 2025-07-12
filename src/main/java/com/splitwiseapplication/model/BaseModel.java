@@ -9,5 +9,5 @@ import jakarta.persistence.MappedSuperclass;
 public class BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    private long id;
 }

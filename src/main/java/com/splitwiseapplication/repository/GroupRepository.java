@@ -3,5 +3,11 @@ package com.splitwiseapplication.repository;
 import com.splitwiseapplication.model.Group;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface GroupRepository extends JpaRepository<Group, Long> {
+import java.util.Optional;
+
+public interface GroupRepository extends
+        JpaRepository<Group, Long> {
+
+    @Override
+    Optional<Group> findById(Long aLong);
 }
