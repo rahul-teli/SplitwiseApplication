@@ -17,10 +17,12 @@ public class Expense extends BaseModel  {
    Group group;
 
    String name;
+
    int amount;
+
    @OneToMany(fetch = FetchType.EAGER)
    List<UserExpenses> paidBy;
 
-    @OneToMany(fetch = FetchType.EAGER)
+   @OneToMany(fetch = FetchType.EAGER)
     List<UserExpenses> owedBy;
 }
